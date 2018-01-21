@@ -55,7 +55,7 @@ class FBController {
 
     }
 
-    static createUserSuccess(user, displayName) {
+    static createUserSuccess(user, displayName, callback) {
         user.updateProfile({
             displayName
         }).then(() => {
@@ -69,8 +69,8 @@ class FBController {
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                firebase.database().ref(`/users/${user.uid}/days/${date}/visited`).on('value', snapshot => {
-                    callback(snapshot);
+                firebase.database().ref(`/users/${user.uid}/days/${date}/visited`).once('value', snapshot => {
+                    callback(snapshot.val());
                 });
             }
         });
@@ -88,7 +88,7 @@ class FBController {
         });
     }
 
-    static addWebsiteVisitedTime({ currentTab, visitTime }) {
+    static addWebsiteVisitedTime({ currentTab, visitTime }, callback) {
 
 		const { currentUser } = firebase.auth();
 
@@ -118,12 +118,14 @@ class FBController {
 		let oldVisitTime = 0;
 
 		firebase.database().ref(`/users/${currentUser.uid}/days/${todayDate}/visited/${tabHashCode}/visitTime`).once('value', snapshot => {
-			oldVisitTime = snapshot.val()
+			oldVisitTime = snapshot.val();
 
 			let totalTime = 0;
 
 			firebase.database().ref(`/users/${currentUser.uid}/days/${todayDate}/visited/`).once('value', snapshot => {
-				_.each(snapshot, site => {
+			    _.each(snapshot.val(), site => {
+                    console.log(site.visitTime);
+
                     totalTime += site.visitTime;
 				});
 
@@ -140,16 +142,17 @@ class FBController {
 
 				firebase.database().ref(`/users/${currentUser.uid}/days/${todayDate}/visited/${tabHashCode}`).set({ link: currentTab, visitTime: newVisitTime, unproductive, percentage  }).then(() => {
 
-					_.each(snapshot, site => {
+					_.each(snapshot.val(), site => {
 
 					    console.log(site);
-                        const sitePercentage = Math.floor((site.visitTime / totalTime) * 100) || 0;
+                        const sitePercentage = Math.floor((site.visitTime / totalTime) * 100);
 
-                        console.log("SITE PERCENT", sitePercentage)
+                        console.log("SITE PERCENT", sitePercentage);
 ;
                         const siteHashCode = site.link.hashCode();
 
-                        firebase.database().ref(`/users/${currentUser.uid}/days/${todayDate}/visited/${siteHashCode}/percentage`).set(sitePercentage);
+                        firebase.database().ref(`/users/${currentUser.uid}/days/${todayDate}/visited/${siteHashCode}/percentage`).set(sitePercentage).then(() => callback());
+
 					});
 
 					console.log("Added website visit time for: ", currentTab);

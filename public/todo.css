@@ -38,12 +38,52 @@ li {
 	background-color: #1c243f;
 	width: 540px;
 	margin-left: 40px;
-	margin-top: 28px;
-	height: 540px;
+	margin-top: 20px;
+	height: 460px;
 	overflow-y:auto;
 	overflow-x: hidden;
 	max-width: 100%;
 }
+
+.suggestedTaskWidget {
+	border-radius: 10px;
+	background-color: #1c243f;
+	width: 540px;
+	margin-left: 40px;
+	margin-top: 20px;
+	height: 150px;
+	overflow-y:auto;
+	overflow-x: hidden;
+	max-width: 100%;
+	text-align: center;
+}
+
+.suggestedTaskTitle {
+	font-family: 'SF UI';
+	font-size: 29px;
+	color: #97abcd;
+	margin-top: 20px;
+	margin-bottom: 0;
+}
+
+.suggestedTask {
+	font-family: 'Avenir Heavy';
+	font-weight: bold;
+	font-size: 16px;
+	color: #020202;
+	background-color: #798de4;
+	margin-top: 10px;
+	padding-top: 10px;
+	height: 30px;
+}
+
+.date {
+	font-family: 'Avenir Medium';
+	font-weight: bold;
+	font-size: 14px;
+	color: #97abcd;
+}
+
 
 .title {
 	font-family: 'SF UI';

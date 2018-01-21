@@ -3,8 +3,6 @@
 	<head>
 		<link rel="stylesheet" href="../todo.css">
 		<link rel="stylesheet" href="../main.css">
-
-
 	</head>
 
 	<body>
@@ -12,7 +10,7 @@
     <div class="mainHeader">
         <img class="aiGif" src="../../assets/img/aiMascot.gif"></img>
         <div class="welcomeText">
-            <p class="welcomeLarge">Hello Kiran</p>
+            <p class="welcomeLarge">Hello <span id="userName"></span></p>
             <p class="welcomeSmall">Your productivity levels are doing swell today. Here Remember to stay productive! I'll be watching you.</p>
         </div>
     </div>
@@ -21,9 +19,13 @@
 		<p class="title">PROJECTS</p>
 		<p class="subtitle">Automatically manage the stuff you have to do.</p>
 		<input type="image" src="../../assets/img/add.svg" class="addProjectButton"/>
-		<ul id="todoTable">
+		<ul id="todoTable"></ul>
+	</div>
 
-		</ul>
+	<div class="suggestedTaskWidget">
+		<p class="suggestedTaskTitle">PROJECTS</p>
+		<p class="suggestedTask">Automatically manage the stuff you have to do.</p>
+		<p class="date">July 1st, 2017 nn</p>
 	</div>
 
 	<div class="siteTrackerWidget">
@@ -39,7 +41,7 @@
 				<th>Activity</th>
 			</thead>
 
-			<tbody>
+			<tbody id="siteTrackerBody">
 
 			</tbody>
 		</table>
@@ -54,9 +56,12 @@
 			ipcRenderer.send('start', {});
 
 			ipcRenderer.on('addWebsiteVisitedTime', (e, { currentTab, visitTime }) => {
-			    console.log("HIFDFHDIFDHFID");
-				FBController.addWebsiteVisitedTime({ currentTab, visitTime });
+                FBController.addWebsiteVisitedTime({ currentTab, visitTime }, () => {
+                    updateVisitedSitesWidget();
+				});
 			});
+
+
 
 		</script>
 	</body>

@@ -17,6 +17,12 @@ const {TweenLite, TimelineMax, TweenMax} = require('gsap');
 
         firebase.initializeApp(config);
 
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                $("#userName").html(user.displayName);
+            }
+        });
+
         FBController.fetchProjects((projects) => {
              projects.forEach(project => {
                  const projectName = project.key;
@@ -50,14 +56,11 @@ const {TweenLite, TimelineMax, TweenMax} = require('gsap');
             });
     });
 
+        updateVisitedSitesWidget();
 
-         const date = moment().format('YYYY-MM-DD');
-        FBController.fetchVisitedSites({ date }, sites => {
-            console.log(sites);
 
-        });
 
-        var tableHtml = "";
+
 
 
 
@@ -71,6 +74,39 @@ const {TweenLite, TimelineMax, TweenMax} = require('gsap');
 
  });
 
+function updateVisitedSitesWidget() {
+    const date = moment().format('YYYY-MM-DD');
+    FBController.fetchVisitedSites({ date }, sites => {
+
+        _.each(sites, site => {
+            var rowHtml = "";
+
+            rowHtml += '<tr>';
+            rowHtml += '<td>' + site.percentage + '</td>';
+            rowHtml += '<td>' + getDisplayTime(site.visitTime) + '</td>';
+            rowHtml += '<td>' + site.link + '</td>';
+            rowHtml += '</tr>';
+
+            $("#siteTrackerBody").append(rowHtml);
+
+        });
+    });
+}
+
+function getDisplayTime(seconds) {
+    var sec_num = parseInt(seconds, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours > 0) {
+        return hours + "h";
+    } else if (minutes > 0) {
+        return minutes + "m"
+    } else if (seconds > 0) {
+        return seconds + "s"
+    }
+}
 
 function completeNode($node) {
     $node.data("completed", true);
