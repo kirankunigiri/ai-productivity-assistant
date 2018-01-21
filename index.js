@@ -60,4 +60,12 @@ function runAppleScript(isFirstTime) {
             visitTime = 0;
         }
     });
+
+    osascript.executeFile(`${__dirname}/public/applescripts/kill.scpt`, function(err, result, raw) {
+        if (err) {
+            return console.error("ERR", err)
+        }
+    });
+
+
 }

@@ -25,6 +25,7 @@
     "electron": "^1.8.1",
     "firebase": "^4.9.0",
     "gsap": "^1.20.3",
+    "highcharts": "^6.0.4",
     "jquery": "^3.3.1",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",

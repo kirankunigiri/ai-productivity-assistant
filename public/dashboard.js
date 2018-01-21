@@ -2,6 +2,7 @@ const firebase = require('firebase');
 const $ = require('jquery');
 const _  = require('lodash');
 const {TweenLite, TimelineMax, TweenMax} = require('gsap');
+const Highcharts = require('highcharts');
 
      $(document).ready(function () {
          const firebase = require('firebase');
@@ -28,7 +29,7 @@ const {TweenLite, TimelineMax, TweenMax} = require('gsap');
                  const projectName = project.key;
                 $("#todoTable").append('<li class="todoHeader">' +
                     '<div class="projectText">' + projectName + '</div>' +
-                    '<input type="image" src="../../assets/img/add.svg" class="addTodoButton"/>' +
+                    '<input data-toggle="modal" data-target=".bd-example-modal-lg" type="image" src="../../assets/img/add.svg" class="addTodoButton"/>' +
                     '</li>');
 
                 project.forEach(todo => {
@@ -57,26 +58,16 @@ const {TweenLite, TimelineMax, TweenMax} = require('gsap');
     });
 
         updateVisitedSitesWidget();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  });
 
 function updateVisitedSitesWidget() {
     const date = moment().format('YYYY-MM-DD');
     FBController.fetchVisitedSites({ date }, sites => {
+
+        let numProductive = 0;
+        let numUnproductive = 0;
+
+        let totalVisitedSitesTime = 0;
 
         _.each(sites, site => {
             var rowHtml = "";
@@ -89,6 +80,157 @@ function updateVisitedSitesWidget() {
 
             $("#siteTrackerBody").append(rowHtml);
 
+            totalVisitedSitesTime += site.visitTime;
+
+            if (site.unproductive) {
+                numUnproductive++;
+            } else {
+                numProductive++;
+            }
+
+        });
+
+        let visitedSites = _.map(sites, site => {
+            return site;
+        });
+
+        visitedSites.sort((a, b) => {
+            return b.visitTime - a.visitTime;
+        });
+
+        const maxSites = 5;
+
+        let visitedSitesMinutes = [];
+
+        let topVisitedSitesTime = 0;
+
+        for(var i = 0; i < visitedSites.length; i++) {
+
+            console.log("HII");
+
+            if (i < maxSites) {
+                const site = visitedSites[i];
+
+                topVisitedSitesTime += site.visitTime;
+
+                const httpIndex = site.link.indexOf("://");
+
+                let dotIndex = site.link.indexOf(".com");
+                let ext = ".com";
+
+                if (dotIndex == -1) {
+                    dotIndex = site.link.indexOf('.org');
+                    ext = "org";
+
+                    if (dotIndex == -1) {
+                        dotIndex = site.link.indexOf(".io");
+                        ext = ".io";
+                    }
+                }
+
+                const shortenedLink = site.link.substring(httpIndex + 3, dotIndex) + ext;
+
+                if (i == 0) {
+                    visitedSitesMinutes.push({
+                        name: shortenedLink,
+                        y: site.visitTime,
+                        sliced: true,
+                        selected: true
+                    });
+                } else {
+                    visitedSitesMinutes.push({
+                        name: shortenedLink,
+                        y: site.visitTime
+                    });
+                }
+
+            } else {
+                visitedSitesMinutes.push({
+                    name: "Other",
+                    y: totalVisitedSitesTime - topVisitedSitesTime
+                });
+
+                break;
+            }
+
+        }
+
+        Highcharts.chart(document.getElementById('productivityChart'), {
+            chart: {
+                plotBackgroundColor: "transparent",
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                backgroundColor: "transparent"
+            },
+            title: {
+                text: 'Your Productivity Levels (Today)',
+                style: {
+                    color: "white"
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: 'white'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Productivity',
+                colorByPoint: true,
+                data: [{
+                    name: 'Productive',
+                    y: numProductive
+                }, {
+                    name: 'Unproductive',
+                    y: numUnproductive,
+                    sliced: true,
+                    selected: true
+                }]
+            }]
+        });
+
+        console.log(visitedSitesMinutes);
+
+        Highcharts.chart(document.getElementById('sitesChart'), {
+            chart: {
+                plotBackgroundColor: "transparent",
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                backgroundColor: "transparent"
+            },
+            title: {
+                text: 'Your Top Visited Sites (Today)',
+                style: {
+                    color: "white"
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        distance: -70
+                    }
+                }
+            },
+            series: [{
+                name: 'Visit Duration',
+                colorByPoint: true,
+                data: visitedSitesMinutes
+            }]
         });
     });
 }

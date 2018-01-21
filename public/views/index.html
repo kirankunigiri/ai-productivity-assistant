@@ -3,7 +3,8 @@
 	<head>
 		<link rel="stylesheet" href="../todo.css">
 		<link rel="stylesheet" href="../main.css">
-	</head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">	</head>
 
 	<body>
 
@@ -17,15 +18,24 @@
 
 	<div class="todoWidget">
 		<p class="title">PROJECTS</p>
-		<p class="subtitle">Automatically manage the stuff you have to do.</p>
+		<p class="subtitle">Automatically manage the stuff that you have o do.</p>
 		<input type="image" src="../../assets/img/add.svg" class="addProjectButton"/>
 		<ul id="todoTable"></ul>
 	</div>
 
+	<!-- Large modal -->
+	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				...
+			</div>
+		</div>
+	</div>
+
 	<div class="suggestedTaskWidget">
-		<p class="suggestedTaskTitle">PROJECTS</p>
-		<p class="suggestedTask">Automatically manage the stuff you have to do.</p>
-		<p class="date">July 1st, 2017 nn</p>
+		<p class="suggestedTaskTitle">SUGGESTED TASK</p>
+		<p class="suggestedTask">APCS Sorting Lab Homeworks.</p>
+		<p class="date">January 4th, 2017</p>
 	</div>
 
 	<div class="siteTrackerWidget">
@@ -34,7 +44,7 @@
 		<table>
 			<col width="120px" />
 			<col width="150px" />
-			<col width="60%" />
+			<col width="40%" />
 			<thead>
 				<th>% Visit</th>
 				<th>Time</th>
@@ -47,6 +57,21 @@
 		</table>
 	</div>
 
+
+	<div class="analyticsWidget">
+		<p class="title">PRODUCTIVITY LEVELS</p>
+		<p class="subtitle">Track your productivity levels over time.</p>
+		<button id="productivityBtn" class="btn btn-default">Productivity</button>
+		<button id="visitedSitesBtn" class="btn btn-default">Visited Sites</button>
+
+		<div id="menu1">
+			<div id="productivityChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+			<div id="sitesChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; display:none"></div>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="../FBController.js"></script>
 		<script src="../dashboard.js"></script>
 
@@ -61,6 +86,18 @@
 				});
 			});
 
+			$("#productivityBtn").click(function(e) {
+			  // $("#menu1").html('<div id="productivityChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>');
+			   $("#sitesChart").css("display", "none");
+			   $("#productivityChart").css("display", "block");
+			});
+
+			$("#visitedSitesBtn").click(function(e) {
+			   // $("#menu1").html('<div id="sitesChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>');
+                $("#productivityChart").css("display", "none");
+                $("#sitesChart").css("display", "block");
+
+            });
 
 
 		</script>

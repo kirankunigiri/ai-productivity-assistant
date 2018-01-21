@@ -11,8 +11,8 @@
 .siteTrackerWidget {
     border-radius: 10px;
     background-color: #1c243f;
-    width: 540px;
-    right: 40px;
+    width: 760px;
+    right: 60px;
     top: 50px;
     height: 300px;
     overflow-y:auto;
@@ -75,4 +75,31 @@ th, td {
     white-space: nowrap;
 }
 
+#productivityBtn {
+    margin-left: 25px;
+}
+
+.btn-default {
+    background-color:#788be7 !important;
+    border: none !important;
+}
+
 tr:hover {background-color:#f5f5f5;}
+
+.analyticsWidget {
+    border-radius: 10px;
+    background-color: #1c243f;
+    width: 760px;
+    right: 60px;
+    top: 380px;
+    height: 490px;
+    overflow-y:auto;
+    overflow-x: hidden;
+    position: fixed;
+    max-width: 100%;
+}
+
+.addProjectButton {
+    background-color: #788be7;
+    border-radius: 20px;
+}
