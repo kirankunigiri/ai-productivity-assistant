@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "SF UI";
+    src: url("../assets/fonts/SF-UI-Text-Heavy.otf");
+}
+
+@font-face {
+    font-family: "Avenir Medium";
+    src: url("../assets/fonts/Avenir-Medium.ttf");
+}
+
+.siteTrackerWidget {
+    border-radius: 10px;
+    background-color: #1c243f;
+    width: 540px;
+    right: 40px;
+    top: 50px;
+    height: 540px;
+    overflow-y:auto;
+    overflow-x: hidden;
+    position: fixed;
+    max-width: 100%;
+}
+
+.mainHeader {
+    /*background-color: red;*/
+    width: 50%;
+}
+
+.aiGif {
+    width: 180px;
+    margin-left: 30px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.welcomeText {
+    float: right;
+    /*word-break:break-all;*/
+    position: fixed;
+    top: 10px;
+    left: 17%;
+}
+
+.welcomeLarge {
+    font-family: 'SF UI';
+    margin-top: 30px;
+    font-size: 55px;
+    color: #97abcd;
+    margin-bottom: 0;
+}
+
+.welcomeSmall {
+    font-family: 'Avenir-Medium';
+    margin-top: 10px;
+    font-size: 20px;
+    color: #97abcd;
+    width: 340px;
+}
+
+table {
+    font-family: 'SF UI';
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+th, td {
+    font-family: 'Avenir Medium';
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #97abcd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+tr:hover {background-color:#f5f5f5;}

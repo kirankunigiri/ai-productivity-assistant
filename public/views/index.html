@@ -1,0 +1,60 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" href="../todo.css">
+		<link rel="stylesheet" href="../main.css">
+
+
+	</head>
+
+	<body>
+
+    <div class="mainHeader">
+        <img class="aiGif" src="../../assets/img/aiMascot.gif"></img>
+        <div class="welcomeText">
+            <p class="welcomeLarge">Hello Kiran</p>
+            <p class="welcomeSmall">Your productivity levels are doing swell today. Here Remember to stay productive! I'll be watching you.</p>
+        </div>
+    </div>
+
+	<div class="todoWidget">
+		<p class="title">PROJECTS</p>
+		<p class="subtitle">Automatically manage the stuff you have to do.</p>
+		<input type="image" src="../../assets/img/add.svg" class="addProjectButton"/>
+		<ul id="todoTable">
+
+		</ul>
+	</div>
+
+	<div class="siteTrackerWidget">
+		<p class="title">VISITED SITES</p>
+		<p class="subtitle">Automatically manage and track the sites you visited today.</p>
+		<table>
+			<col width="120px" />
+			<col width="150px" />
+			<col width="60%" />
+			<thead>
+				<th>% Visit</th>
+				<th>Time</th>
+				<th>Activity</th>
+			</thead>
+
+			<tbody>
+				<td>20</td>
+				<td>3h, 20m</td>
+				<td>https://google.com</td>
+			</tbody>
+		</table>
+	</div>
+
+		<script src="../FBController.js"></script>
+		<script src="../dashboard.js"></script>
+
+		<script type="text/javascript">
+			const { ipcRenderer } = require('electron');
+
+			ipcRenderer.send('start', {});
+
+		</script>
+	</body>
+</html>

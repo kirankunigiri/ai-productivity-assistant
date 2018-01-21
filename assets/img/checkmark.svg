@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="13px" viewBox="0 0 16 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>checkmark</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-63.000000, -410.000000)">
+        <g id="Group-3-Copy" transform="translate(43.750000, 398.125000)" fill="#5869B4" fill-rule="nonzero">
+            <path d="M34.4138715,12.7470486 C33.6385243,11.9546875 32.3819271,11.9546875 31.6065799,12.7470486 L24.5876215,19.9026042 L22.8332465,18.1137153 C22.0578993,17.3262153 20.800816,17.3262153 20.0259549,18.1137153 C19.2506076,18.9060764 19.2506076,20.1894097 20.0259549,20.9769097 L23.1842188,24.1998264 C23.959566,24.9921875 25.2161632,24.9921875 25.9915104,24.1998264 L34.4138715,15.6102431 C35.1892188,14.8178819 35.1892188,13.5345486 34.4138715,12.7470486" id="checkmark"></path>
+        </g>
+    </g>
+</svg>

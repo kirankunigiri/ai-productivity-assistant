@@ -1,0 +1,42 @@
+{
+  "name": "ai-productivity-assistant",
+  "version": "1.0.0",
+  "description": "An AI assistant that trains people to become more productive.",
+  "main": "index.js",
+  "scripts": {
+    "electron": "electron .",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirankunigiri/ai-productivity-assistant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kirankunigiri/ai-productivity-assistant/issues"
+  },
+  "homepage": "https://github.com/kirankunigiri/ai-productivity-assistant#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "chrono-node": "^1.3.5",
+    "ejs": "^2.5.7",
+    "electron": "^1.8.1",
+    "firebase": "^4.9.0",
+    "gsap": "^1.20.3",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.4",
+    "moment": "^2.20.1",
+    "node-osascript": "^2.0.0",
+    "responsivevoice": "^0.4.1",
+    "webpack": "^3.10.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-electron": "^1.4.15",
+    "babel-preset-es2015": "^6.24.1",
+    "rimraf": "^2.6.2",
+    "webpack-dev-server": "^2.11.1"
+  }
+}

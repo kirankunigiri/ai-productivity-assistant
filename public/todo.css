@@ -1,0 +1,176 @@
+@font-face {
+	font-family: "SF UI";
+	src: url("../assets/fonts/SF-UI-Text-Heavy.otf");
+}
+@font-face {
+	font-family: "Avenir";
+	src: url("../assets/fonts/Avenir.ttc");
+}
+@font-face {
+	font-family: "Avenir Heavy";
+	src: url("../assets/fonts/Avenir-Heavy.ttf");
+}
+@font-face {
+	font-family: "Avenir Medium";
+	src: url("../assets/fonts/Avenir-Medium.ttf");
+}
+
+body {
+	background-color: #18181b;
+	overflow: hidden;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+ul {
+	padding: 0;
+	padding-bottom: 100px;
+}
+
+li {
+	list-style-type: none;
+}
+
+.todoWidget {
+	border-radius: 10px;
+	background-color: #1c243f;
+	width: 540px;
+	margin-left: 40px;
+	margin-top: 28px;
+	height: 540px;
+	overflow-y:auto;
+	overflow-x: hidden;
+	max-width: 100%;
+}
+
+.title {
+	font-family: 'SF UI';
+	font-size: 29px;
+	color: #97abcd;
+	padding-left: 24px;
+	padding-top: 18px;
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+.addProjectButton {
+	float: right;
+	margin-right: 20px;
+	margin-top: -24px;
+	cursor: pointer;
+}
+
+.addTodoButton {
+	float: right;
+	margin-right: 14px;
+	/*margin-top: -24px;*/
+	cursor: pointer;
+	width: 24px;
+}
+
+.projectText {
+	display: inline-block;
+}
+
+input:focus {
+	outline:0;
+}
+
+.signIn {
+	display: ;
+}
+
+.subtitle {
+	font-family: 'Avenir Heavy';
+	font-weight: bold;
+	font-size: 13px;
+	color: #97abcd;
+	padding-left: 24px;
+	margin-top: 0;
+}
+
+.todoHeader {
+	font-family: 'Avenir-Heavy';
+	color: #97abcd;
+	background-color: #2e3657;
+	box-shadow: 0px 1px 10px #1518227c;
+	list-style-type: none;
+	border-radius: 6px;
+	margin-top: 40px;
+	margin-bottom: 10px;
+	margin-left: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 26px;
+	width: 466px;
+	text-transform: uppercase;
+}
+
+.todo {
+	font-family: 'Avenir-Medium';
+	color: #020202;
+	box-shadow: 0px 1px 10px #1518227e;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #798de4;
+	width: 100%;
+	box-sizing: border-box;
+	align-items: center;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.todoText {
+	padding-left: 22px;
+	pointer-events: none;
+	display: inline-block;
+	margin-top: 4px;
+}
+
+.todoImage {
+	padding-left: 20px;
+	float: left;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.detailButton {
+	padding: 0px;
+	float: right;
+	font-size: 10px;
+	text-decoration: underline;
+	text-align: right;
+	width: 100px;
+	pointer-events: none;
+	margin-right: 20px;
+}
+
+
+
+
+
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

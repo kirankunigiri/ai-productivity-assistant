@@ -1,0 +1,76 @@
+<head>
+</head>
+
+<body>
+    <div id="container">
+        <div id="inner">
+            <img id="aiImage" src="../../assets/img/aiMascot.gif"/>
+            <p id="title">Hi there. I’m Sara</p>
+            <p id="subtitle">I’ll help you become a more productive person with a few easy steps. Just do as I say, and you’ll improve in no time. Otherwise, you’ll face the dire consequences.</p>
+            <form id="signUpForm">
+                    <input type="text" placeholder="Your name" name="displayName" class="signIn" id="displayName"> <br>
+                    <input type="email" placeholder="Email" name="email" class="signIn" id="email"> <br>
+                    <input type="password" placeholder="Password" name="password" class="signIn" id="password"> <br>
+            </form>
+
+            <div id="buttonGroup">
+                <a onclick="signIn()" class="btn btn-5"><span>Sign in</span></a>
+                <a onclick="signUp()" class="btn btn-5"><span>Sign Up</span></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../FBController.js"></script>
+    <link rel="stylesheet" href="../login.css">
+
+    <script>
+
+        const $ = require('jquery');
+
+        const voice = require('responsiveVoice');
+        voice.speak('Hello, I am Sarah. I will help you become more productive by managing your daily tasks and tracking your productivity.');
+
+        const firebase = require('firebase');
+
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyD-wUQCtIdu3UCuSZI0IG8wyLiIvqetn6A",
+            authDomain: "ai-productivity-assistant.firebaseapp.com",
+            databaseURL: "https://ai-productivity-assistant.firebaseio.com",
+            projectId: "ai-productivity-assistant",
+            storageBucket: "ai-productivity-assistant.appspot.com",
+            messagingSenderId: "412582784739"
+        };
+
+        firebase.initializeApp(config);
+
+        function signIn() {
+            const inputs = $('form').serializeArray();
+
+            const email = inputs[1].value;
+            const password = inputs[2].value;
+
+            FBController.loginUser({ email, password }, () => {
+                window.location.href = "index.html";
+            });
+
+        }
+
+        function signUp() {
+
+            const inputs = $('form').serializeArray();
+
+            const displayName = inputs[0].value;
+            const email = inputs[1].value;
+            const password = inputs[2].value;
+
+            FBController.createUser({ displayName, email, password }, () => {
+
+                window.location.href = "index.html";
+
+            });
+
+        }
+    </script>
+
+</body>
