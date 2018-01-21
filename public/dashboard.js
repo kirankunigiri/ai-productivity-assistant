@@ -49,6 +49,26 @@ const {TweenLite, TimelineMax, TweenMax} = require('gsap');
 
             });
     });
+
+
+         const date = moment().format('YYYY-MM-DD');
+        FBController.fetchVisitedSites({ date }, sites => {
+            console.log(sites);
+
+        });
+
+        var tableHtml = "";
+
+
+
+
+
+
+
+
+
+
+
  });
 
 

@@ -40,9 +40,7 @@
 			</thead>
 
 			<tbody>
-				<td>20</td>
-				<td>3h, 20m</td>
-				<td>https://google.com</td>
+
 			</tbody>
 		</table>
 	</div>
@@ -54,6 +52,11 @@
 			const { ipcRenderer } = require('electron');
 
 			ipcRenderer.send('start', {});
+
+			ipcRenderer.on('addWebsiteVisitedTime', (e, { currentTab, visitTime }) => {
+			    console.log("HIFDFHDIFDHFID");
+				FBController.addWebsiteVisitedTime({ currentTab, visitTime });
+			});
 
 		</script>
 	</body>

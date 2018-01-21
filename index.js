@@ -29,7 +29,7 @@ app.on('ready', () => {
     mainWindow.loadURL(`file://${__dirname}/public/views/login.html`);
 });
 
-ipcMain.on('start', () => {
+ipcMain.on('start', (e, data) => {
     calculateWebsiteTime()
 });
 
@@ -53,7 +53,7 @@ function runAppleScript(isFirstTime) {
             console.log("Tab changed", result);
 
             if (result && currentTab !== "") {
-                mainWindow.webContents.send("addWebsiteVisitedTime:data", { currentTab, visitTime });
+                mainWindow.webContents.send("addWebsiteVisitedTime", { currentTab, visitTime });
             }
 
             currentTab = result;

@@ -1,6 +1,5 @@
 const lodash = require('lodash');
-const sites = require(__dirname + '/unproductive_sites').sites;
-
+const moment = require('moment');
 
 class FBController {
 
@@ -66,12 +65,12 @@ class FBController {
         });
     }
 
-    static fetchVisitedSites({date}) {
+    static fetchVisitedSites({date}, callback) {
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 firebase.database().ref(`/users/${user.uid}/days/${date}/visited`).on('value', snapshot => {
-                    console.log("SNAPSHOT", snapshot.val());
+                    callback(snapshot);
                 });
             }
         });
@@ -97,7 +96,15 @@ class FBController {
 
 		const todayDate = moment().format('YYYY-MM-DD');
 
-		const { unproductiveSites } = sites;
+        const unproductiveSites=  [
+            'www.facebook.com',
+            'www.youtube.com',
+            'www.netflix.com',
+            'www.twitter.com',
+            'www.producthunt.com',
+            'www.reddit.com',
+            'www.9gag.com'
+        ];
 
 		let unproductive = false;
 
@@ -134,8 +141,12 @@ class FBController {
 				firebase.database().ref(`/users/${currentUser.uid}/days/${todayDate}/visited/${tabHashCode}`).set({ link: currentTab, visitTime: newVisitTime, unproductive, percentage  }).then(() => {
 
 					_.each(snapshot, site => {
-                        const sitePercentage = Math.floor((site.visitTime / totalTime) * 100);
 
+					    console.log(site);
+                        const sitePercentage = Math.floor((site.visitTime / totalTime) * 100) || 0;
+
+                        console.log("SITE PERCENT", sitePercentage)
+;
                         const siteHashCode = site.link.hashCode();
 
                         firebase.database().ref(`/users/${currentUser.uid}/days/${todayDate}/visited/${siteHashCode}/percentage`).set(sitePercentage);

@@ -8,4 +8,4 @@ const sites = {
     ]
 }
 
-module.exports = { sites };
+export { sites };

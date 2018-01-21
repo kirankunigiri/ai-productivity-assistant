@@ -22,15 +22,17 @@
 
     <script src="../FBController.js"></script>
     <link rel="stylesheet" href="../login.css">
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
 
     <script>
 
         const $ = require('jquery');
 
-        const voice = require('responsiveVoice');
-        voice.speak('Hello, I am Sarah. I will help you become more productive by managing your daily tasks and tracking your productivity.');
-
         const firebase = require('firebase');
+
+        // Speak
+        const speakString = "Hi there. I'm Sarah. I'll help you become a more productive person with a few easy steps. Just do as I say, and you'll improve in no time. Otherwise, you'll face the dire consequences.";
+        responsiveVoice.speak(speakString, "Fallback UK Female");
 
         // Initialize Firebase
         var config = {
