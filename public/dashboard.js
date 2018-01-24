@@ -62,6 +62,8 @@ const Highcharts = require('highcharts');
 
 function updateVisitedSitesWidget() {
     const date = moment().format('YYYY-MM-DD');
+    $("#siteTrackerBody").html("");
+
     FBController.fetchVisitedSites({ date }, sites => {
 
         let numProductive = 0;

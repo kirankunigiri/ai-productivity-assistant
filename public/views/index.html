@@ -19,17 +19,9 @@
 	<div class="todoWidget">
 		<p class="title">PROJECTS</p>
 		<p class="subtitle">Automatically manage the stuff that you have o do.</p>
+		<input type="text" placeholder="New Todo" name="displayName" class="signIn" id="newTodo"> <br>
 		<input type="image" src="../../assets/img/add.svg" class="addProjectButton"/>
 		<ul id="todoTable"></ul>
-	</div>
-
-	<!-- Large modal -->
-	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				...
-			</div>
-		</div>
 	</div>
 
 	<div class="suggestedTaskWidget">
@@ -44,11 +36,11 @@
 		<table>
 			<col width="120px" />
 			<col width="150px" />
-			<col width="40%" />
+			<col width="60%" />
 			<thead>
-				<th>% Visit</th>
-				<th>Time</th>
-				<th>Activity</th>
+				<th style="text-align: center">% Visit</th>
+				<th style="text-align: center">Time</th>
+				<th style="text-align: center">Activity</th>
 			</thead>
 
 			<tbody id="siteTrackerBody">
@@ -70,6 +62,7 @@
 		</div>
 	</div>
 
+	<script src="../TodoParser.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="../FBController.js"></script>
@@ -86,6 +79,10 @@
 				});
 			});
 
+            $(".addTodoButton").click(function(e) {
+                $('customModal').css('opacity') = '1';
+            });
+
 			$("#productivityBtn").click(function(e) {
 			  // $("#menu1").html('<div id="productivityChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>');
 			   $("#sitesChart").css("display", "none");
@@ -97,6 +94,14 @@
                 $("#productivityChart").css("display", "none");
                 $("#sitesChart").css("display", "block");
 
+            });
+//			console.log(TodoParser.parseTodo("Do HW tomorrow for 1 hour and 25 minutes", "Project"));
+            $("#newTodo").on('keyup', function (e) {
+                if (e.keyCode == 13) {
+
+                    console.log(TodoParser.parseTodo($(this).val(), "COOOL"));
+
+                }
             });
 
 

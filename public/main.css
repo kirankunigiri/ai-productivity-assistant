@@ -8,6 +8,23 @@
     src: url("../assets/fonts/Avenir-Medium.ttf");
 }
 
+.customModal {
+    opacity: 0;
+}
+
+.addTodoField {
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /*margin: 5% auto; !* Will not center vertically and won't work in IE6/7. *!*/
+    top: 0;
+    text-align: center;
+    left: 0;
+    background-color: black;
+    color: #ffffff;
+}
+
 .siteTrackerWidget {
     border-radius: 10px;
     background-color: #1c243f;
@@ -59,10 +76,31 @@
 
 table {
     font-family: 'SF UI';
-    border-collapse: collapse;
     width: 100%;
     table-layout: fixed;
 }
+
+.signIn {
+    font-family: 'Avenir-Medium';
+    margin: 0 auto;
+    margin-top: 30px;
+    font-size: 20px;
+    color: #6897F0;
+    text-align: center;
+    background: transparent;
+    height:17px;
+    border: 0;
+    width: 40%;
+    margin-left:1px;
+    box-shadow: -8px 15px 0px -7px #ebebeb, 8px 15px 0px -7px #ebebeb;
+    -webkit-transition: box-shadow 0.3s;
+    transition: box-shadow 0.4s;
+}
+.signIn:focus {
+    outline: none;
+    box-shadow: -8px 15px 0px -7px #4EA6EA, 8px 15px 0px -7px #4EA6EA;
+}
+
 
 th, td {
     font-family: 'Avenir Medium';

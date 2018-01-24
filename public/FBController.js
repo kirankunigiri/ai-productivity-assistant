@@ -40,7 +40,15 @@ class FBController {
 
     static createUser({displayName, email, password}, callback) {
 
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(user => createUserSuccess(user, displayName, callback)).catch((e) => console.log(e));
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(user => {
+            user.updateProfile({
+                displayName
+            }).then(() => {
+                console.log(user);
+
+                callback();
+            });
+        }).catch((e) => console.log(e));
     }
 
     static loginUser({email, password}, callback) {
@@ -54,17 +62,6 @@ class FBController {
     static authenticateUser({user}, callback) {
 
     }
-
-    static createUserSuccess(user, displayName, callback) {
-        user.updateProfile({
-            displayName
-        }).then(() => {
-            console.log(user);
-
-            callback();
-        });
-    }
-
     static fetchVisitedSites({date}, callback) {
 
         firebase.auth().onAuthStateChanged(function (user) {
